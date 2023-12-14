@@ -37,6 +37,10 @@ class Global {
     "blue_11": "#3D72DA",
     "blue_12": "#E5F6F6",
     "blue_13": "#198EFD",
+    "blue_14": "#0D47A1",
+    "blue_15": "#030E1E",
+    "blue_16": "#030E1E",
+    "blue_17": "#023179",
     "green": "#4CAF50",
     "green_2": "#125C66",
     "green_3": "#134E54",
@@ -73,7 +77,10 @@ class Global {
     "gray_13": "#F1F1F1",
     "gray_14": "#D9D9D9",
     "gray_15": "#F8F8F8",
+    "gray_16": "#C1C4C9",
     "brown_1": "#B8601F",
+    "orange_1": "#FE724C",
+    "white_1": "#D3D1D8",
   };
 
   static int mTimeClick = 0;

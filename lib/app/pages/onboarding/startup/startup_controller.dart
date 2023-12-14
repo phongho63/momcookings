@@ -1,16 +1,22 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
+
 import '../../../../common/base_controller.dart';
-import '../../../utils/pages.dart';
 import '../../../utils/shared_preferences.dart';
+import '../../home/main/main_view.dart';
 
 class StartupController extends BaseController {
-
   bool isShowStartButton = false;
+  Timer? timer;
 
   @override
   void onResumed() {}
 
   @override
-  void firstLoad() {}
+  void firstLoad() {
+    startTimer();
+  }
 
   void goToLogin() async {
     bool? firstInstallApp = await SharedPreferencesHelper().getBoolValue(
@@ -25,5 +31,25 @@ class StartupController extends BaseController {
     } else {
       //view.pushScreen(Pages.onboardingHome, isAllowBack: false);
     }
+  }
+
+  void startTimer() {
+    debugPrint("start splash screen timer");
+    timer = Timer(const Duration(seconds: 2), () {
+      Navigator.pushAndRemoveUntil(
+          view.context, SecondPageRoute(), (Route<dynamic> route) => false)
+          .then((value) => {view.onBackWithData(value)});
+    });
+  }
+}
+
+class SecondPageRoute extends CupertinoPageRoute {
+  SecondPageRoute()
+      : super(builder: (BuildContext context) => const MainView());
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return FadeTransition(opacity: animation, child: const MainView());
   }
 }

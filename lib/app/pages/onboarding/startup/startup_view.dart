@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:personal_project/app/assets/icon_assets.dart';
 
 import '../../../../common/base_controller.dart';
 import '../../../../common/base_state_view.dart';
+import '../../../assets/image_assets.dart';
 import '../../../utils/global.dart';
 import '../../../widgets/button_view.dart';
+import '../../../widgets/gradient_text.dart';
 import '../../onboarding/startup/startup_controller.dart';
 
 class StartupView extends View {
@@ -34,27 +37,30 @@ class _StartupView extends BaseStateView<StartupView, StartupController> {
   @override
   Widget body(BuildContext context, BaseController controller) {
     StartupController startupController = controller as StartupController;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Text("Chè review",style: TextStyle(
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w400,
-            fontSize: 20,
-            color: HexColor(Global.mColors["black_5"].toString()),
-          ),),
+    return Scaffold(
+      body: Stack(children: [
+        Container(
+            decoration: BoxDecoration(
+                color: HexColor(Global.mColors["orange_1"].toString()))),
+        Align(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                  width: 210,
+                  height: 147,
+                  child: Image.asset(IconAssets.icFoodLogo)),
+              const Text("Food Hub",
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white)),
+            ],
+          ),
         ),
-        bottomNavigationBar: MaluButton(
-          color: HexColor(Global.mColors["blue_1"].toString()),
-          text: "Bắt đầu",
-          buttonHeight: 50,
-          onPressEvent: () {
-            // pushScreen(Pages.onboardingHome,
-            //     isAllowBack: false);
-          },
-        ),
-      ),
+      ]),
     );
   }
 }
