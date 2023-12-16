@@ -37,7 +37,7 @@ class MaluButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: color,
-                fontFamily: 'Montserrat',
+                fontFamily: 'Roboto',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),

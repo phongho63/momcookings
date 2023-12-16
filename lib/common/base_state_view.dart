@@ -192,7 +192,7 @@ controller extends BaseController> extends ViewState<page, controller>
                       : 0,
                   child: Container(
                     decoration: (isShowBackground())
-                        ? const BoxDecoration(color: Colors.black)
+                        ? const BoxDecoration(color: Colors.white)
                         : null,
                     child: Scaffold(
                       key: globalKey,

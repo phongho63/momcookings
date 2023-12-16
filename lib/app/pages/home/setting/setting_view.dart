@@ -43,7 +43,7 @@ class _SettingView extends BaseStateView<SettingView, SettingController> {
           child: Text(
             "Favorite list Page",
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),

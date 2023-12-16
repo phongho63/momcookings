@@ -43,7 +43,7 @@ class _ProductInventoryView extends BaseStateView<ProductInventoryView, ProductI
           child: Text(
             "Product inventory Page",
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),

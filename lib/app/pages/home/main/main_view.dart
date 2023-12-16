@@ -90,7 +90,7 @@ class _MainView extends BaseStateView<MainView, MainController> {
                     blurRadius: 11  //edited
                 )]
                   ),
-                  height: 78,
+                  height: 80,
                   child: BottomNavigationBar(
                     elevation: 0,
                     type: BottomNavigationBarType.fixed,
@@ -133,7 +133,7 @@ class _MainView extends BaseStateView<MainView, MainController> {
               Text(
                 namePage,
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.w400,
                   fontSize: 9,
                   color: HexColor(Global.mColors["white_1"].toString()),
@@ -157,7 +157,7 @@ class _MainView extends BaseStateView<MainView, MainController> {
               Text(
                 namePage,
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.w700,
                   fontSize: 9,
                   color: HexColor(Global.mColors["orange_1"].toString()),
