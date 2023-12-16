@@ -90,7 +90,7 @@ class _MainView extends BaseStateView<MainView, MainController> {
                     blurRadius: 11  //edited
                 )]
                   ),
-                  height: 78,
+                  height: 80,
                   child: BottomNavigationBar(
                     elevation: 0,
                     type: BottomNavigationBarType.fixed,
