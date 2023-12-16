@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:personal_project/app/assets/icon_assets.dart';
 
 import '../../../../common/base_controller.dart';
 import '../../../../common/base_state_view.dart';
@@ -46,13 +47,13 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
           scrollDirection: Axis.vertical,
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 105),
-                  const Text(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 105),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: Text(
                     "What chè would you like to order",
                     style: TextStyle(
                       fontFamily: 'Roboto',
@@ -60,12 +61,15 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                       fontSize: 30,
                     ),
                   ),
-                  const SizedBox(height: 19),
-                  _searchBar(),
-                  // const SizedBox(height: 30),
-                  // const Text("List view here"),
-                  const SizedBox(height: 30),
-                  Row(
+                ),
+                const SizedBox(height: 19),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: _searchBar()),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
@@ -78,32 +82,37 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                       Text("View all")
                     ],
                   ),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    height: 229,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return _featuredItems(index);
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(width: 15);
-                      },
-                    ),
+                ),
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 235,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      return _featuredItems(index);
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(width: 15);
+                    },
                   ),
-                  const SizedBox(height: 24),
-                  const Text(
+                ),
+                const SizedBox(height: 24),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: Text(
                     "Popular Chè",
                     style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 18,
                         fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 15),
-                  const Text("List view here")
-                ],
-              ),
+                ),
+                const SizedBox(height: 15),
+                const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    child: const Text("List view here"))
+              ],
             ),
           ),
         ),
@@ -131,13 +140,58 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
     return Container(
         width: 266,
         height: 229,
+        margin: (index == 0) ? const EdgeInsets.only(left: 25) : null,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.black.withOpacity(0.2), width: 1)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
             height: 135,
-            child: Image.asset(ImageAssets.imgFoodSample),
+            child: Stack(
+              children: [
+                Image.asset(ImageAssets.imgFoodSample),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 29,
+                        width: 52,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Center(
+                          child: RichText(
+                            text: TextSpan(
+                              style: DefaultTextStyle.of(context).style,
+                              children: [
+                                const TextSpan(
+                                    text: '4.5',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600)),
+                                WidgetSpan(
+                                    child: Container(
+                                        height: 14,
+                                        width: 15,
+                                        padding:
+                                            const EdgeInsets.only(bottom: 3),
+                                        margin: const EdgeInsets.only(left: 3),
+                                        child: Image.asset(
+                                            IconAssets.icRatingStar))),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Image.asset(IconAssets.icSaveFavorite)
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
@@ -153,25 +207,72 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                 ),
                 const SizedBox(height: 6),
                 Row(
-                  children: const [
-                    Text("Free delivery",
+                  children: [
+                    SizedBox(
+                      width: 14,
+                      height: 12,
+                      child: Image.asset(IconAssets.icDeliveryGuy),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text("Free delivery",
                         style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: Colors.grey)),
-                    SizedBox(width: 17),
-                    Text("10-15 mins",
+                    const SizedBox(width: 17),
+                    SizedBox(
+                      width: 11,
+                      height: 13,
+                      child: Image.asset(IconAssets.icEstimateClock),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text("10-15 mins",
                         style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Colors.grey))
+                            color: Colors.grey)),
                   ],
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 226,
+                  height: 22,
+                  child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return _tagItems(index);
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(width: 6);
+                    },
+                  ),
                 )
               ],
             ),
           ),
         ]));
+  }
+
+  Widget _tagItems(int index) {
+    return Container(
+      width: 54,
+      height: 22,
+      decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(5)),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      child: Center(
+        child: Text("Type: ${index + 1}".toUpperCase(),
+            style: TextStyle(
+                fontFamily: "Roboto",
+                fontSize: 11,
+                fontWeight: FontWeight.w400,
+                color: Colors.black.withOpacity(0.5))),
+      ),
+    );
   }
 }
