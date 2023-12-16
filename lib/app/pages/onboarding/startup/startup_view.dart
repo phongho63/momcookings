@@ -53,7 +53,7 @@ class _StartupView extends BaseStateView<StartupView, StartupController> {
                   child: Image.asset(IconAssets.icFoodLogo)),
               const Text("Food Hub",
                   style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Roboto',
                       fontSize: 36,
                       fontWeight: FontWeight.w600,
                       color: Colors.white)),

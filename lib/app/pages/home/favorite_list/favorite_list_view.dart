@@ -43,7 +43,7 @@ class _FavoriteListView extends BaseStateView<FavoriteListView, FavoriteListCont
           child: Text(
             "Favorite list Page",
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),

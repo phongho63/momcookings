@@ -39,11 +39,12 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
     return const Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
+        child: Align(
+          alignment: Alignment.topCenter,
           child: Text(
-            "Home Page",
+            "What would you like to order",
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "570427696535",
+    "project_id": "moms-cooking-app",
+    "storage_bucket": "moms-cooking-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570427696535:android:4dc157587dd174687610d2",
+        "android_client_info": {
+          "package_name": "com.gmail.phongho63.personal_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2Q-pACcrGsJcaBJbWvxrV9eYPmSSQyME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

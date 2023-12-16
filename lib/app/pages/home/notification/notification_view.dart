@@ -43,7 +43,7 @@ class _NotificationView extends BaseStateView<NotificationView, NotificationCont
           child: Text(
             "Notification page",
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),
