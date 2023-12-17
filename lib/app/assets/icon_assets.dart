@@ -9,4 +9,6 @@ class IconAssets {
   static const String icEstimateClock = 'assets/icons/ic_estimate_clock.png';
   static const String icRatingStar = 'assets/icons/ic_rating_star.png';
   static const String icSaveFavorite = 'assets/icons/ic_save_favorite.png';
+  static const String icAddPlus = 'assets/icons/ic_add_plus.png';
+  static const String icReduceMinus = 'assets/icons/ic_reduce_minus.png';
 }

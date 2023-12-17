@@ -7,6 +7,7 @@ import '../../../../common/base_controller.dart';
 import '../../../../common/base_state_view.dart';
 import '../../../assets/image_assets.dart';
 import '../../../utils/global.dart';
+import '../../../utils/pages.dart';
 import 'home_page_controller.dart';
 
 class HomePageView extends View {
@@ -46,7 +47,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height * 1.25,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -109,9 +110,19 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: const Text("List view here"))
+                SizedBox(
+                  height: 235,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      return _featuredItems(index);
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(width: 15);
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -137,124 +148,129 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
   }
 
   Widget _featuredItems(int index) {
-    return Container(
-        width: 266,
-        height: 229,
-        margin: (index == 0) ? const EdgeInsets.only(left: 25) : null,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.black.withOpacity(0.2), width: 1)),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            height: 135,
-            child: Stack(
-              children: [
-                Image.asset(ImageAssets.imgFoodSample),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 29,
-                        width: 52,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              style: DefaultTextStyle.of(context).style,
-                              children: [
-                                const TextSpan(
-                                    text: '4.5',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
-                                WidgetSpan(
-                                    child: Container(
-                                        height: 14,
-                                        width: 15,
-                                        padding:
-                                            const EdgeInsets.only(bottom: 3),
-                                        margin: const EdgeInsets.only(left: 3),
-                                        child: Image.asset(
-                                            IconAssets.icRatingStar))),
-                              ],
+    return InkWell(
+      onTap: (){
+        pushScreen(Pages.foodDetails);
+      },
+      child: Container(
+          width: 266,
+          height: 229,
+          margin: (index == 0) ? const EdgeInsets.only(left: 25) : null,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.black.withOpacity(0.2), width: 1)),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(
+              height: 135,
+              child: Stack(
+                children: [
+                  Image.asset(ImageAssets.imgFoodSample),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 29,
+                          width: 52,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                style: DefaultTextStyle.of(context).style,
+                                children: [
+                                  const TextSpan(
+                                      text: '4.5',
+                                      style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600)),
+                                  WidgetSpan(
+                                      child: Container(
+                                          height: 14,
+                                          width: 15,
+                                          padding:
+                                              const EdgeInsets.only(bottom: 3),
+                                          margin: const EdgeInsets.only(left: 3),
+                                          child: Image.asset(
+                                              IconAssets.icRatingStar))),
+                                ],
+                              ),
                             ),
                           ),
                         ),
+                        // Image.asset(IconAssets.icSaveFavorite)
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Chè ${index + 1}",
+                    style: const TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 14,
+                        height: 12,
+                        child: Image.asset(IconAssets.icDeliveryGuy),
                       ),
-                      // Image.asset(IconAssets.icSaveFavorite)
+                      const SizedBox(width: 4),
+                      const Text("Free delivery",
+                          style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey)),
+                      const SizedBox(width: 17),
+                      SizedBox(
+                        width: 11,
+                        height: 13,
+                        child: Image.asset(IconAssets.icEstimateClock),
+                      ),
+                      const SizedBox(width: 4),
+                      const Text("10-15 mins",
+                          style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey)),
                     ],
                   ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Chè ${index + 1}",
-                  style: const TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 14,
-                      height: 12,
-                      child: Image.asset(IconAssets.icDeliveryGuy),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: 226,
+                    height: 22,
+                    child: ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return _tagItems(index);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(width: 6);
+                      },
                     ),
-                    const SizedBox(width: 4),
-                    const Text("Free delivery",
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey)),
-                    const SizedBox(width: 17),
-                    SizedBox(
-                      width: 11,
-                      height: 13,
-                      child: Image.asset(IconAssets.icEstimateClock),
-                    ),
-                    const SizedBox(width: 4),
-                    const Text("10-15 mins",
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey)),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: 226,
-                  height: 22,
-                  child: ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 3,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return _tagItems(index);
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(width: 6);
-                    },
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ]));
+          ])),
+    );
   }
 
   Widget _tagItems(int index) {
