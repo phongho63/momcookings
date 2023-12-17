@@ -234,22 +234,27 @@ class _FoodDetailsView
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 15),
-        child: SizedBox(
-          height: 70,
-          child: Center(
-            child: Container(
-              height: 60,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: HexColor(Global.mColors['orange_1'].toString()),
-                  borderRadius: BorderRadius.circular(100)),
-              child: Center(
-                child: Text("Thêm vào giỏ hàng".toUpperCase(), style: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white
-                )),
+        child: InkWell(
+          onTap: (){
+            debugPrint("You purchased something!");
+          },
+          child: SizedBox(
+            height: 70,
+            child: Center(
+              child: Container(
+                height: 60,
+                width: 250,
+                decoration: BoxDecoration(
+                    color: HexColor(Global.mColors['orange_1'].toString()),
+                    borderRadius: BorderRadius.circular(100)),
+                child: Center(
+                  child: Text("Thêm vào giỏ hàng".toUpperCase(), style: const TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white
+                  )),
+                ),
               ),
             ),
           ),
