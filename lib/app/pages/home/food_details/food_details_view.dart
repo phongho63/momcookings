@@ -236,7 +236,7 @@ class _FoodDetailsView
         padding: const EdgeInsets.only(bottom: 15),
         child: InkWell(
           onTap: () {
-            onBack();
+            _controller!.updateCart(_controller!.data!.foodId.toString());
           },
           child: SizedBox(
             height: 70,

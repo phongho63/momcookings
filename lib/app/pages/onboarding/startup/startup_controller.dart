@@ -14,6 +14,9 @@ class StartupController extends BaseController {
   void onResumed() {}
 
   @override
+  void onListener() {}
+
+  @override
   void firstLoad() {
     startTimer();
   }

@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../common/base_controller.dart';
 import '../../../../domain/entities/food_info/food_details_info/food_details_info.dart';
+import '../../../utils/global.dart';
 
 class FoodDetailsController extends BaseController {
-
   FoodDetailsController({required this.data});
 
   int amount = 1;
   int maxRange = 0;
   int minRange = 1;
   FoodDetailsInfo? data;
-
 
   @override
   void firstLoad() {
@@ -26,7 +25,7 @@ class FoodDetailsController extends BaseController {
   }
 
   @override
-  void onListener(){}
+  void onListener() {}
 
   void increaseAmount() {
     if (amount == maxRange) {
@@ -44,5 +43,16 @@ class FoodDetailsController extends BaseController {
       amount = amount - 1;
     }
     refreshUI();
+  }
+
+  void updateCart(String itemId) {
+
+    // Will implement in the future
+
+    // if (!Global.totalNewItemsInCart.contains(itemId)) {
+    //   Global.totalNewItemsInCart.add(itemId);
+    // }
+
+    view.onBack();
   }
 }

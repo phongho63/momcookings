@@ -118,53 +118,121 @@ class _MainView extends BaseStateView<MainView, MainController> {
   }
 
   BottomNavigationBarItem _tab(int index, String? imageAsset, String namePage) {
+    int badgeNumber = -1;
+    if (index == 0 || index == 1 || index == 3 || index == 4){
+      badgeNumber = 0;
+    } else {
+
+      // Future implementation
+
+      // badgeNumber = Global.totalNewItemsInCart.length;
+
+    }
     return BottomNavigationBarItem(
-      icon: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ImageIcon(
-                imageAsset == "" ? null : AssetImage("${imageAsset!}.png"),
-                color: HexColor(Global.mColors["white_1"].toString()),
-                size: 22,
-              ),
-              const SizedBox(height: 5),
-              Text(
-                namePage,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 9,
-                  color: HexColor(Global.mColors["white_1"].toString()),
+      icon: Stack(
+        children: [
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ImageIcon(
+                    imageAsset == "" ? null : AssetImage("${imageAsset!}.png"),
+                    color: HexColor(Global.mColors["white_1"].toString()),
+                    size: 22,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    namePage,
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 9,
+                      color: HexColor(Global.mColors["white_1"].toString()),
+                    ),
+                  )
+                ],
+              )),
+          if (badgeNumber > 0)
+            Positioned(
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              )
-            ],
-          )),
-      activeIcon: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ImageIcon(
-                imageAsset == ""
-                    ? null
-                    : AssetImage("${imageAsset!}.png"),
-                color: HexColor(Global.mColors["orange_1"].toString()),
-                size: 24,
-              ),
-              const SizedBox(height: 5),
-              Text(
-                namePage,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 9,
-                  color: HexColor(Global.mColors["orange_1"].toString()),
+                constraints: const BoxConstraints(
+                  minWidth: 16,
+                  minHeight: 16,
                 ),
-              )
-            ],
-          )),
+                child: Center(
+                  child: Text(
+                    badgeNumber > 9 ? "9+" : badgeNumber.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 9,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            )
+        ],
+      ),
+      activeIcon: Stack(
+        children: [
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ImageIcon(
+                    imageAsset == ""
+                        ? null
+                        : AssetImage("${imageAsset!}.png"),
+                    color: HexColor(Global.mColors["orange_1"].toString()),
+                    size: 24,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    namePage,
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 9,
+                      color: HexColor(Global.mColors["orange_1"].toString()),
+                    ),
+                  )
+                ],
+              )),
+          if (badgeNumber > 0)
+            Positioned(
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                constraints: const BoxConstraints(
+                  minWidth: 16,
+                  minHeight: 16,
+                ),
+                child: Center(
+                  child: Text(
+                    badgeNumber > 9 ? "9+" : badgeNumber.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 9,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            )
+        ],
+      ),
       label: "",
     );
   }

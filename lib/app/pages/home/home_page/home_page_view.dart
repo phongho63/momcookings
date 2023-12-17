@@ -149,46 +149,46 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
 
   Widget _searchBar() {
     return Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width * 0.872,
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 19),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black.withOpacity(0.1), width: 2),
-            borderRadius: BorderRadius.circular(10),
-            color: HexColor(Global.mColors["white_2"].toString())),
-        child: TextField(
-          cursorColor: Colors.black,
-          style: const TextStyle(
-            color: Colors.black,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
-          ),
-          onChanged: (value) {},
-          decoration: InputDecoration(
-            isDense: true,
-            contentPadding: const EdgeInsets.only(top: 2),
-            prefixIcon: Container(
-              alignment: Alignment.centerLeft,
-              child: Image.asset(
-                IconAssets.icSearch,
-                width: 24,
-                height: 24,
-                color: Colors.black,
-              ),
-            ),
-            prefixIconConstraints:
-            const BoxConstraints(maxWidth: 32, maxHeight: 24),
-            hintText: "Tìm kiếm...",
-            hintStyle: TextStyle(
-                color: Colors.black.withOpacity(0.2),
-                fontFamily: 'Roboto',
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w400,
-                fontSize: 14),
-            border: InputBorder.none,
-          ),
+      height: 60,
+      width: MediaQuery.of(context).size.width * 0.872,
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 19),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withOpacity(0.1), width: 2),
+          borderRadius: BorderRadius.circular(10),
+          color: HexColor(Global.mColors["white_2"].toString())),
+      child: TextField(
+        cursorColor: Colors.black,
+        style: const TextStyle(
+          color: Colors.black,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
         ),
+        onChanged: (value) {},
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: const EdgeInsets.only(top: 2),
+          prefixIcon: Container(
+            alignment: Alignment.centerLeft,
+            child: Image.asset(
+              IconAssets.icSearch,
+              width: 24,
+              height: 24,
+              color: Colors.black,
+            ),
+          ),
+          prefixIconConstraints:
+              const BoxConstraints(maxWidth: 32, maxHeight: 24),
+          hintText: "Tìm kiếm...",
+          hintStyle: TextStyle(
+              color: Colors.black.withOpacity(0.2),
+              fontFamily: 'Roboto',
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+              fontSize: 14),
+          border: InputBorder.none,
+        ),
+      ),
     );
   }
 

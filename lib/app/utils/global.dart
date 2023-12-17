@@ -156,4 +156,6 @@ class Global {
         2,
         2.0),
   ];
+
+  static List<String> totalNewItemsInCart = [];
 }

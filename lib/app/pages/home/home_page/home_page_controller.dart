@@ -16,4 +16,7 @@ class HomePageController extends BaseController {
     listData.addAll(Global.sampleData);
     hideLoadingProgress();
   }
+
+  @override
+  void onListener() {}
 }

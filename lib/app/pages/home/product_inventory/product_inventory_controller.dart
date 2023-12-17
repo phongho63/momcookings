@@ -4,4 +4,7 @@ class ProductInventoryController extends BaseController {
 
   @override
   void firstLoad() {}
+
+  @override
+  void onListener() {}
 }
