@@ -233,7 +233,7 @@ class _FoodDetailsView
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 15),
         child: SizedBox(
           height: 70,
           child: Center(
