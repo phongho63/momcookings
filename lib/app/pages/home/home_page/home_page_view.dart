@@ -71,7 +71,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
-                    "Quán Chè Mẹ Hoà",
+                    "Quán Chè Mụ Tuyệch",
                     style: TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.w700,
@@ -156,11 +156,40 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
             border: Border.all(color: Colors.black.withOpacity(0.1), width: 2),
             borderRadius: BorderRadius.circular(10),
             color: HexColor(Global.mColors["white_2"].toString())),
-        child: const Text(
-          "Search bar here",
-          style: TextStyle(
-              fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w400),
-        ));
+        child: TextField(
+          cursorColor: Colors.black,
+          style: const TextStyle(
+            color: Colors.black,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+          ),
+          onChanged: (value) {},
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: const EdgeInsets.only(top: 2),
+            prefixIcon: Container(
+              alignment: Alignment.centerLeft,
+              child: Image.asset(
+                IconAssets.icSearch,
+                width: 24,
+                height: 24,
+                color: Colors.black,
+              ),
+            ),
+            prefixIconConstraints:
+            const BoxConstraints(maxWidth: 32, maxHeight: 24),
+            hintText: "Tìm kiếm...",
+            hintStyle: TextStyle(
+                color: Colors.black.withOpacity(0.2),
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+                fontSize: 14),
+            border: InputBorder.none,
+          ),
+        ),
+    );
   }
 
   Widget _featuredItems(int index) {

@@ -236,7 +236,7 @@ class _FoodDetailsView
         padding: const EdgeInsets.only(bottom: 15),
         child: InkWell(
           onTap: () {
-            debugPrint("You purchased something!");
+            onBack();
           },
           child: SizedBox(
             height: 70,

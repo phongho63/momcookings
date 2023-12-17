@@ -11,4 +11,5 @@ class IconAssets {
   static const String icSaveFavorite = 'assets/icons/ic_save_favorite.png';
   static const String icAddPlus = 'assets/icons/ic_add_plus.png';
   static const String icReduceMinus = 'assets/icons/ic_reduce_minus.png';
+  static const String icSearch = 'assets/icons/ic_search.png';
 }
