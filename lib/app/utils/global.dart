@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../data/network/constants.dart';
+import '../../domain/entities/food_info/food_details_info/food_details_info.dart';
 
 class Global {
   static String mToken = "";
@@ -105,4 +106,54 @@ class Global {
 //   return "${Constants.baseUrl}/services/media/api/v1/view/$path?width=$width";
 // }
 
+  static List<FoodDetailsInfo> sampleData = [
+    FoodDetailsInfo(
+        0,
+        "Chè Đậu Ván",
+        "20.000",
+        "Hạt đậu ván già thường dùng để nấu chè (món ăn), ở Huế gọi là chè đậu ván. Ở một số vùng quê Việt Nam, lá đậu ván được dùng để nhuộm màu bánh chưng. Trong hạt đậu ván khô có chứa độc tố glucozit dưới dạng xyanua với nồng độ cao, do đó chỉ ăn được sau khi luộc hạt đậu trong một thời gian.",
+        ["Đậu", "Nước dừa", "Nóng"],
+        5,
+        4.5),
+    FoodDetailsInfo(
+        1,
+        "Chè Chuối",
+        "20.000",
+        "Chè chuối là món chè quê quen thuộc với những nguyên liệu vô cùng đơn giản, dễ kiếm nhưng lại mang một hương vị hấp dẫn khó quên. Để có thể thưởng thức món ăn này thường xuyên, bạn có thể học cách làm, sẽ không quá khó mà lại nhanh chóng. Đảm bảo, bạn sẽ có một món chè thơm ngon, bổ dưỡng chiêu đãi cả nhà.",
+        ["Chuối", "Nước dừa", "Nóng"],
+        3,
+        5.0),
+    FoodDetailsInfo(
+        2,
+        "Chè Đậu Đen",
+        "20.000",
+        "Chè đậu đen là một loại chè ngọt, có thể nấu loãng hoặc đặc sệt tùy sở thích mỗi người. Món ăn này vừa bổ dưỡng vừa thích hợp dùng để giải khát vào mùa hè nắng nóng. Cách chế biến khá đơn giản và bạn còn thể biến tấu, kết hợp với nhiều nguyên liệu khác để tạo nên nhiều công thức chè mới. Chúng ta cùng điểm qua một số tác dụng của đậu đen đối với sức khỏe con người.",
+        ["Đậu", "Lạnh", "Nóng"],
+        6,
+        4.0),
+    FoodDetailsInfo(
+        3,
+        "Chè Đậu Xanh",
+        "20.000",
+        "Đậu xanh có một nguồn gốc lịch sử đa dạng và phức tạp. Xuất hiện lần đầu tiên vào thời kỳ của triều đại Nguyễn, món chè này đã trải qua nhiều giai đoạn biến đổi để trở thành món ngon như chúng ta biết đến ngày nay. Xuất phát từ việc dùng đậu xanh, một loại cây trồng phổ biến trong nông nghiệp cổ đại Việt Nam. Đậu xanh đã trở thành một phần của bữa ăn hàng ngày và trong các dịp lễ hội đặc biệt.",
+        ["Đậu", "Lạnh", "Nóng"],
+        5,
+        4.5),
+    FoodDetailsInfo(
+        4,
+        "Chè Hạt Sen",
+        "30.000",
+        "Chè hạt sen vốn là một món ăn hoàng cung và rất được các vua chúa yêu thích. Món chè không chỉ có hương vị thơm ngon, mát lành mà còn có rất nhiều công dụng hỗ trợ cho sức khỏe như: Làm đẹp, chống lão hóa da, bồi bổ sức khỏe.",
+        ["Đậu", "Đắng", "Nóng"],
+        5,
+        3.0),
+    FoodDetailsInfo(
+        5,
+        "Chè Ba Màu",
+        "40.000",
+        "Chè ba màu là món chè đã in sâu vào trong kí ức tuổi thơ của nhiều người Việt Nam. Ly chè truyền thống với màu sắc cực  bắt mắt, vị ngon, ngọt mịn của các loại đậu quyện cùng nước cốt dừa béo ngậy, vị mát lạ miệng đến từ rau câu,... Tất cả tạo nên ly chè ba màu thật đặc biệt. Vào bếp và thực hiện những ly chè hấp dẫn này để cả gia đình mình cùng xua tan cái nắng hè nhé!",
+        ["Đậu", "Ngọt", "Lạnh"],
+        2,
+        2.0),
+  ];
 }

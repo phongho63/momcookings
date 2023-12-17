@@ -5,23 +5,28 @@ import 'package:personal_project/app/assets/icon_assets.dart';
 
 import '../../../../common/base_controller.dart';
 import '../../../../common/base_state_view.dart';
+import '../../../../domain/entities/food_info/food_details_info/food_details_info.dart';
 import '../../../assets/image_assets.dart';
 import '../../../utils/global.dart';
 import 'food_details_controller.dart';
 
+const foodItemParam = 'foodItemParam';
+
 class FoodDetailsView extends View {
-  const FoodDetailsView({Key? key}) : super(key: key);
+  final FoodDetailsInfo? foodItem;
+  const FoodDetailsView({Key? key, this.foodItem}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _FoodDetailsView();
+    return _FoodDetailsView(foodItem);
   }
 }
 
 class _FoodDetailsView
     extends BaseStateView<FoodDetailsView, FoodDetailsController> {
-  _FoodDetailsView() : super(FoodDetailsController());
-  FoodDetailsController? mFoodDetailsController;
+  _FoodDetailsView(foodItemData)
+      : super(FoodDetailsController(data: foodItemData));
+  FoodDetailsController? _controller;
 
   @override
   bool isInitialAppbar() {
@@ -40,7 +45,7 @@ class _FoodDetailsView
 
   @override
   Widget body(BuildContext context, BaseController controller) {
-    mFoodDetailsController = controller as FoodDetailsController;
+    _controller = controller as FoodDetailsController;
     return Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
@@ -82,8 +87,8 @@ class _FoodDetailsView
                 ],
               ),
               const SizedBox(height: 22),
-              const Text("Text: Chè đậu ván",
-                  style: TextStyle(
+              Text(_controller!.data!.foodName,
+                  style: const TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 28,
                       fontWeight: FontWeight.w600)),
@@ -95,10 +100,10 @@ class _FoodDetailsView
                   child: Image.asset(IconAssets.icRatingStar),
                 ),
                 const SizedBox(width: 9),
-                const Padding(
-                  padding: EdgeInsets.only(top: 2),
-                  child: Text("4.5",
-                      style: TextStyle(
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Text("${_controller!.data!.foodRating}",
+                      style: const TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 14,
                           fontWeight: FontWeight.w600)),
@@ -110,7 +115,7 @@ class _FoodDetailsView
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "20.000đ",
+                    "${_controller!.data!.foodPrice} đ",
                     style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 31,
@@ -123,49 +128,87 @@ class _FoodDetailsView
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: 31,
-                          width: 31,
-                          child: Stack(
-                            children: [
-                              Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(100),
-                                      border: Border.all(
-                                          color: HexColor(Global
-                                              .mColors['orange_1']
-                                              .toString())))),
-                              Center(
-                                  child: Text("-",
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 20,
-                                          color: HexColor(Global
-                                              .mColors['orange_1']
-                                              .toString()))))
-                            ],
+                        InkWell(
+                          onTap: () {
+                            _controller!.decreaseAmount();
+                          },
+                          child: SizedBox(
+                            height: 31,
+                            width: 31,
+                            child: Stack(
+                              children: [
+                                Container(
+                                    decoration: (_controller!.amount ==
+                                            _controller!.minRange)
+                                        ? BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            border: Border.all(
+                                                color: HexColor(Global
+                                                    .mColors['orange_1']
+                                                    .toString())))
+                                        : BoxDecoration(
+                                            color: HexColor(Global
+                                                .mColors['orange_1']
+                                                .toString()),
+                                            borderRadius:
+                                                BorderRadius.circular(100))),
+                                Center(
+                                    child: Text("-",
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 20,
+                                            color: (_controller!.amount ==
+                                                    _controller!.minRange)
+                                                ? HexColor(Global
+                                                    .mColors['orange_1']
+                                                    .toString())
+                                                : Colors.white)))
+                              ],
+                            ),
                           ),
                         ),
-                        const Text("1"),
-                        SizedBox(
-                          height: 31,
-                          width: 31,
-                          child: Stack(
-                            children: [
-                              Container(
-                                  decoration: BoxDecoration(
-                                      color: HexColor(Global.mColors['orange_1']
-                                          .toString()),
-                                      borderRadius:
-                                          BorderRadius.circular(100))),
-                              const Center(
-                                  child: Text("+",
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 20,
-                                          color: Colors.white)))
-                            ],
+                        Text("${_controller!.amount}"),
+                        InkWell(
+                          onTap: () {
+                            _controller!.increaseAmount();
+                          },
+                          child: SizedBox(
+                            height: 31,
+                            width: 31,
+                            child: Stack(
+                              children: [
+                                Container(
+                                    decoration: (_controller!.amount ==
+                                            _controller!.maxRange)
+                                        ? BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            border: Border.all(
+                                                color: HexColor(Global
+                                                    .mColors['orange_1']
+                                                    .toString())))
+                                        : BoxDecoration(
+                                            color: HexColor(Global
+                                                .mColors['orange_1']
+                                                .toString()),
+                                            borderRadius:
+                                                BorderRadius.circular(100))),
+                                Center(
+                                    child: Text("+",
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 20,
+                                            color: (_controller!.amount ==
+                                                    _controller!.maxRange)
+                                                ? HexColor(Global
+                                                    .mColors['orange_1']
+                                                    .toString())
+                                                : Colors.white)))
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -174,8 +217,12 @@ class _FoodDetailsView
                 ],
               ),
               const SizedBox(height: 25),
-              Text(
-                  "Brown the beef better. Lean ground beef – I like to use 85% lean angus. Garlic – use fresh  chopped. Spices – chili powder, cumin, onion powder. Brown the beef better. Lean ground beef – I like to use 85% lean angus. Garlic – use fresh  chopped. Spices – chili powder, cumin, onion powder.", style: TextStyle(fontFamily: 'Roboto', fontSize: 15, color: Colors.black.withOpacity(0.5), height: 2))
+              Text(_controller!.data!.foodDescription,
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 15,
+                      color: Colors.black.withOpacity(0.5),
+                      height: 2))
             ],
           ),
         ));
