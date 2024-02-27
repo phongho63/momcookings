@@ -31,8 +31,8 @@ String getRandomString(int length) {
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }
 
-String formattedMoney(double? currentAmount, [String? currency = '₫']) {
-  double amount = currentAmount ?? 0;
+String formattedMoney(int? currentAmount, [String? currency = 'đ']) {
+  int amount = currentAmount ?? 0;
   final currencyFormatter = MyFormat.NumberFormat('#,##0.##');
   String formatedMoney = currencyFormatter.format(amount);
 

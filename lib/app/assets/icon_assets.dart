@@ -12,4 +12,5 @@ class IconAssets {
   static const String icAddPlus = 'assets/icons/ic_add_plus.png';
   static const String icReduceMinus = 'assets/icons/ic_reduce_minus.png';
   static const String icSearch = 'assets/icons/ic_search.png';
+  static const String icBackButton = 'assets/icons/ic_back_button.png';
 }

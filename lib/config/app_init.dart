@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:month_year_picker/month_year_picker.dart';
@@ -15,7 +16,7 @@ import 'app_config.dart';
 
 Future<Widget> initializeApp(AppConfig appConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await initFirebase(appConfig);
+  await initFirebase(appConfig);
   await getAppVersion();
   await getDeviceLang();
   return MyApp(appConfig);
@@ -71,7 +72,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'me Review',
+      title: 'Mom cooking',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -97,6 +98,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       },
     );
   }
+}
+
+Future<void> initFirebase(AppConfig appConfig) async {
+  await Firebase.initializeApp(name: "Moms-cooking", options: appConfig.firebaseOptions);
 }
 
 Future<void> getAppVersion() async {

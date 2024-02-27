@@ -1,22 +1,27 @@
 import '../../../../common/base_controller.dart';
+import '../../../../data/repositories_impl/food_details_repository_impl/food_details_repository_impl.dart';
 import '../../../../domain/entities/food_info/food_details_info/food_details_info.dart';
-import '../../../utils/global.dart';
 
 class HomePageController extends BaseController {
-  List<FoodDetailsInfo> listData = [];
+  Future<List<FoodDetailsInfo>>? response;
 
+  final FoodDetailsRepositoryImpl getFoodDetails = FoodDetailsRepositoryImpl();
 
   @override
   void firstLoad() {
-    addData();
+    loadFoodList();
   }
 
   void addData() {
     showLoadingProgress();
-    listData.addAll(Global.sampleData);
     hideLoadingProgress();
   }
 
   @override
   void onListener() {}
+
+  Future<List<FoodDetailsInfo>?>? loadFoodList() {
+    response = getFoodDetails.getListFood();
+    return response;
+  }
 }

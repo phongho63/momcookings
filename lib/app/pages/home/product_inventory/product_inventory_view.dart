@@ -20,12 +20,12 @@ class _ProductInventoryView extends BaseStateView<ProductInventoryView, ProductI
 
   @override
   bool isInitialAppbar() {
-    return false;
+    return true;
   }
 
   @override
   String appBarTitle() {
-    return "";
+    return "Cart";
   }
 
   @override
@@ -36,18 +36,24 @@ class _ProductInventoryView extends BaseStateView<ProductInventoryView, ProductI
   @override
   Widget body(BuildContext context, BaseController controller) {
     mProductInventoryController = controller as ProductInventoryController;
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
-          child: Text(
-            "Product inventory Page",
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Center(
+              child: Text(
+                "Product inventory Page",
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                ),
+              ),
             ),
-          ),
+
+          ],
         ),
       ),
     );

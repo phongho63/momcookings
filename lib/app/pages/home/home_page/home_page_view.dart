@@ -7,6 +7,7 @@ import 'package:personal_project/app/assets/icon_assets.dart';
 
 import '../../../../common/base_controller.dart';
 import '../../../../common/base_state_view.dart';
+import '../../../../domain/entities/food_info/food_details_info/food_details_info.dart';
 import '../../../assets/image_assets.dart';
 import '../../../utils/global.dart';
 import '../../../utils/pages.dart';
@@ -44,107 +45,132 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
   @override
   Widget body(BuildContext context, BaseController controller) {
     _controller = controller as HomePageController;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: SizedBox(
-            height: (Platform.isAndroid)
-                ? MediaQuery.of(context).size.height * 1.25
-                : MediaQuery.of(context).size.height * 1.05,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 105),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  child: Text(
-                    "Chào mừng đến",
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 30,
+    return FutureBuilder<List<FoodDetailsInfo>>(
+        future: _controller?.response,
+        builder: (context, AsyncSnapshot<List<FoodDetailsInfo>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return Scaffold(
+                backgroundColor: Colors.white,
+                body: SafeArea(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: SizedBox(
+                      height: (Platform.isAndroid)
+                          ? MediaQuery.of(context).size.height * 1.25
+                          : MediaQuery.of(context).size.height * 1.05,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 105),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Chào mừng đến",
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 30,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Quán Chè Mụ Tuyệch",
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 30,
+                                  color: HexColor(
+                                      Global.mColors['orange_1'].toString())),
+                            ),
+                          ),
+                          const SizedBox(height: 19),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: _searchBar()),
+                          const SizedBox(height: 30),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const Text(
+                                  "Chè hiện có",
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text("Xem tất cả >>",
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 13,
+                                        color: Colors.black.withOpacity(0.7)))
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          SizedBox(
+                            height: 235,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data?.length ?? 1,
+                              itemBuilder: (context, index) {
+                                return _featuredItems(index, snapshot.data!,
+                                    snapshot.data?.length ?? 1);
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const SizedBox(width: 15);
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Chè nổi tiếng",
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          SizedBox(
+                            height: 235,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data?.length ?? 1,
+                              itemBuilder: (context, index) {
+                                return _featuredItems(index, snapshot.data!,
+                                    snapshot.data?.length ?? 1);
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const SizedBox(width: 15);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Text(
-                    "Quán Chè Mụ Tuyệch",
-                    style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 30,
-                        color: HexColor(Global.mColors['orange_1'].toString())),
-                  ),
-                ),
-                const SizedBox(height: 19),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: _searchBar()),
-                const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Chè hiện có",
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text("Xem tất cả >>")
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 15),
-                SizedBox(
-                  height: 235,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _controller!.listData.length,
-                    itemBuilder: (context, index) {
-                      return _featuredItems(index);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(width: 15);
-                    },
-                  ),
-                ),
-                const SizedBox(height: 24),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  child: Text(
-                    "Chè nổi tiếng",
-                    style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                SizedBox(
-                  height: 235,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return _featuredItems(index);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(width: 15);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text(snapshot.error.toString()));
+            } else {
+              return const SizedBox();
+            }
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        });
   }
 
   Widget _searchBar() {
@@ -192,16 +218,17 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
     );
   }
 
-  Widget _featuredItems(int index) {
+  Widget _featuredItems(
+      int index, List<FoodDetailsInfo> listResponse, int maxLength) {
     return InkWell(
       onTap: () {
         pushScreen(Pages.foodDetails,
-            arguments: {foodItemParam: _controller!.listData[index]});
+            arguments: {foodItemParam: listResponse[index].foodId});
       },
       child: Container(
           width: 266,
           height: 229,
-          margin: (index == 0) ? const EdgeInsets.only(left: 25) : null,
+          margin: (index == 0) ? const EdgeInsets.only(left: 25) : (index == maxLength - 1) ? const EdgeInsets.only(right: 25) : null,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border:
@@ -210,9 +237,15 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(
               height: 135,
+              width: 266,
               child: Stack(
                 children: [
-                  Image.asset(ImageAssets.imgFoodSample),
+                  ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      child: Image.asset(ImageAssets.imgSampleFoodBanner,
+                          fit: BoxFit.fill, width: 266)),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
@@ -230,8 +263,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: [
                                   TextSpan(
-                                      text:
-                                          "${_controller!.listData[index].foodRating}",
+                                      text: listResponse[index].foodRating,
                                       style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 12,
@@ -264,7 +296,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _controller!.listData[index].foodName,
+                    listResponse[index].foodName,
                     style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 15,
@@ -317,8 +349,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                               horizontal: 4, vertical: 4),
                           child: Center(
                             child: Text(
-                                _controller!.listData[index].foodTags[0]
-                                    .toUpperCase(),
+                                listResponse[index].foodTags[0].toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 11,
@@ -336,8 +367,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                               horizontal: 4, vertical: 4),
                           child: Center(
                             child: Text(
-                                _controller!.listData[index].foodTags[1]
-                                    .toUpperCase(),
+                                listResponse[index].foodTags[1].toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 11,
@@ -355,8 +385,7 @@ class _HomePageView extends BaseStateView<HomePageView, HomePageController> {
                               horizontal: 4, vertical: 4),
                           child: Center(
                             child: Text(
-                                _controller!.listData[index].foodTags[2]
-                                    .toUpperCase(),
+                                listResponse[index].foodTags[2].toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 11,

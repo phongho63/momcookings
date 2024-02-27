@@ -1,35 +1,29 @@
-import 'package:flutter/cupertino.dart';
-
 import '../../../../common/base_controller.dart';
+import '../../../../data/repositories_impl/food_details_repository_impl/food_details_repository_impl.dart';
 import '../../../../domain/entities/food_info/food_details_info/food_details_info.dart';
-import '../../../utils/global.dart';
 
 class FoodDetailsController extends BaseController {
   FoodDetailsController({required this.data});
 
   int amount = 1;
-  int maxRange = 0;
+  int maxRangeCapacity = 0;
   int minRange = 1;
-  FoodDetailsInfo? data;
+  String? data;
+  Future<FoodDetailsInfo>? response;
+
+  final FoodDetailsRepositoryImpl getFoodDetails = FoodDetailsRepositoryImpl();
 
   @override
   void firstLoad() {
-    showLoadingProgress();
-    if (data != null) {
-      maxRange = data!.foodRange;
-      hideLoadingProgress();
-    } else {
-      debugPrint("Data is null");
-      hideLoadingProgress();
-    }
+    loadFoodDetails(data ?? "");
   }
 
   @override
   void onListener() {}
 
   void increaseAmount() {
-    if (amount == maxRange) {
-      amount == maxRange;
+    if (amount == maxRangeCapacity) {
+      amount == maxRangeCapacity;
     } else {
       amount = amount + 1;
     }
@@ -54,5 +48,14 @@ class FoodDetailsController extends BaseController {
     // }
 
     view.onBack();
+  }
+
+  Future<FoodDetailsInfo>? loadFoodDetails(String foodName) {
+    response = getFoodDetails.getFoodDetailsInfo(foodName);
+    return response;
+  }
+
+  void fillOutData(int maxRange){
+    maxRangeCapacity = maxRange;
   }
 }

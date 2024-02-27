@@ -206,22 +206,38 @@ controller extends BaseController> extends ViewState<page, controller>
                         centerTitle: true,
                         title: Text(appBarTitle(),
                             style: TextStyle(
-                                fontFamily: 'NunitoSans',
+                                fontFamily: 'Roboto',
                                 fontSize: 18,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 color: HexColor(Global.mColors["black_5"]
                                     .toString()))),
                         leading: !isHideBackButton()
                             ? Padding(
-                          padding: const EdgeInsets.only(left: 25),
+                          padding: const EdgeInsets.only(left: 0),
                           child: IconButton(
                             onPressed: () {
                               if (Global.isAvailableToClick()) {
                                 onBack();
                               }
                             },
-                            icon: Image.asset(IconAssets.icBack,
-                                width: 11, height: 16),
+                            icon: Container(
+                              height: 38,
+                              width: 38,
+                              padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 14),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.2), //edited
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                    offset: const Offset(0, 3)
+                                  )
+                                ]
+                              ),
+                              child: SizedBox(width: 5, height: 9, child: Image.asset(IconAssets.icBackButton)),
+                            ),
                             alignment: Alignment.center,
                           ),
                         )

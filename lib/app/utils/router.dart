@@ -17,7 +17,7 @@ class AppRouter {
       case Pages.foodDetails:
         Map<String, dynamic> arguments = settings.arguments as Map<String, dynamic>;
         return _buildRoute(settings, FoodDetailsView(
-          foodItem: arguments[foodItemParam] as FoodDetailsInfo,
+          foodItem: arguments[foodItemParam] as String,
         ));
       default:
         return null;
