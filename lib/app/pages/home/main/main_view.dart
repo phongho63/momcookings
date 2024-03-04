@@ -104,7 +104,7 @@ class _MainView extends BaseStateView<MainView, MainController> {
                       _tab(1, "assets/main_assets/ic_favorite",
                           "Yêu thích"),
                       _tab(2, "assets/main_assets/ic_product_inventory",
-                          "Giỏ hàng"),
+                          "Đơn hàng"),
                       _tab(3, "assets/main_assets/ic_notification", "Thông báo"),
                       _tab(4, "assets/main_assets/ic_setting", "Cài đặt")
                     ],

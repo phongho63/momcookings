@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:personal_project/app/utils/pages.dart';
-import 'package:personal_project/domain/entities/food_info/food_details_info/food_details_info.dart';
 
 import '../pages/home/food_details/food_details_view.dart';
+import '../pages/onboarding/register/register_view.dart';
 
 class AppRouter {
   final RouteObserver<PageRoute> routeObserver;
@@ -19,6 +19,10 @@ class AppRouter {
         return _buildRoute(settings, FoodDetailsView(
           foodItem: arguments[foodItemParam] as String,
         ));
+
+      case Pages.register:
+        return _buildRoute(settings, const RegisterView());
+
       default:
         return null;
     }
